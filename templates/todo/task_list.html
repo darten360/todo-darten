@@ -12,12 +12,12 @@
                     {% if task.done %}
                         <span style="color: green">
                             <strong>Done</strong>
-                            <a class="nav btn btn-success" href="{% url 'todo:task_complete_undo' task.pk %}">Complete</a>
+                            <a class="nav btn btn-secondary" href="{% url 'todo:task_complete_undo' task.pk %}">Undo</a>
                         </span>
                     {% else %}
                         <span style="color: red">
                             <strong>Not done</strong>
-                            <a class="nav btn btn-secondary" href="{% url 'todo:task_complete_undo' task.pk %}">Undo</a>
+                            <a class="nav btn btn-success" href="{% url 'todo:task_complete_undo' task.pk %}">Complete</a>
                         </span>
                     {% endif %}
                     </p>
@@ -27,10 +27,8 @@
                         Created: {{ task.datetime }}
                         {% if task.deadline %}
                             <span style="color: darkred">Deadline: {{ task.deadline }}</span>
-                            </p>
-                        {% else %}
-                            </p>
                         {% endif %}
+                    </p>
                 </li>
                 <li>
                     <p style="color: gray"><strong>Tags:
@@ -44,7 +42,8 @@
                 </li>
             </ul>
         {% endfor %}
-
+    {% else %}
+        <p>Sorry, there are no tasks</p>
     {% endif %}
 
 {% endblock %}
