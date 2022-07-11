@@ -1,0 +1,15 @@
+.sidebar-nav {
+    border-radius: 0;
+    margin-top: 15px;
+}
+
+.sidebar-nav li a {
+    text-decoration-line: none;
+}
+
+.nav {
+    float: right;
+    margin-top: 1%;
+    text-align: center;
+    padding-left: 1%;
+}

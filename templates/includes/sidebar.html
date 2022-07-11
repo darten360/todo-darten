@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+    <ul style="width: 200px" class="sidebar-nav list-group">
+        <li class="list-group-item"><a href="{% url 'todo:tags_list' %}"><strong>Tags</strong></a></li>
+        <li class="list-group-item"><a href="{%  url 'todo:todo_list' %}"><strong>Tasks</strong></a></li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <h1><strong>TODO List</strong> <a class="nav btn btn-primary" href="{% url 'todo:todo_create' %}">Add task</a></h1>
+    {% if task_list %}
+        {% for task in task_list %}
+            <ul style="list-style: none; padding-left: 0">
+                <li>
+                    <hr>
+                    <p><strong>{{ task.content }}</strong>
+                    {% if task.done %}
+                        <span style="color: green">
+                            <strong>Done</strong>
+                            <a class="nav btn btn-success" href="{% url 'todo:task_complete_undo' task.pk %}">Complete</a>
+                        </span>
+                    {% else %}
+                        <span style="color: red">
+                            <strong>Not done</strong>
+                            <a class="nav btn btn-secondary" href="{% url 'todo:task_complete_undo' task.pk %}">Undo</a>
+                        </span>
+                    {% endif %}
+                    </p>
+                </li>
+                <li>
+                    <p class="small">
+                        Created: {{ task.datetime }}
+                        {% if task.deadline %}
+                            <span style="color: darkred">Deadline: {{ task.deadline }}</span>
+                            </p>
+                        {% else %}
+                            </p>
+                        {% endif %}
+                </li>
+                <li>
+                    <p style="color: gray"><strong>Tags:
+                    {% for tag in task.tags.all %}
+                        {{ tag }}
+                    {% endfor %}
+                        <a style="text-decoration-line: none" href="{% url 'todo:todo_update' task.pk%}">Update</a>
+                        <a style="text-decoration-line: none" href="{%  url 'todo:todo_delete' task.pk %}">Delete</a>
+                        </strong>
+                    </p>
+                </li>
+            </ul>
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock %}
